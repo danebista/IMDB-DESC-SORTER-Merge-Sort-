@@ -1,4 +1,40 @@
-let movies=[
+
+window.onload=()=>{
+    displayMovies(movies)
+    document.getElementById("filters").addEventListener("change", changeFunction);
+    
+    
+}
+
+function changeFunction(){
+    let e = document.getElementById("filters");
+    let strUser = e.options[e.selectedIndex].value;
+    let copyMovies= [...movies];
+    let sortedMovies=sortBestFirst(copyMovies, strUser);
+
+    displayMovies(sortedMovies);
+
+}
+
+function getAttributeValue(){
+    document.getElementById()
+}
+
+function displayMovies(movies){
+    let table="<table border='1' style='width: 100%'>";
+    table +="<tr><th>ID</th><th>Name</th><th>Rank</th></tr>";
+    for (let index=0; index<movies.length; index ++){
+        table +="<tr>";
+        table +="<td>" +movies[index].id + "</td>";
+        table +="<td>" +movies[index].title + "</td>";
+        table +="<td>" +movies[index].rank + "</td>";
+        table += "</tr>"
+    }
+    table += "</table>";
+    document.getElementById("movies-list").innerHTML= table;
+}
+
+let movies= [
     {
         "title": "The Shawshank Redemption",
         "rank": "1",
@@ -201,50 +237,10 @@ let movies=[
     }
 ]
 
-window.onload=()=>{
-    displayMovies(movies)
-    document.getElementById("filters").addEventListener("change", changeFunction);
-    
-    
-}
-
-async function fetchMovies() {
-    const response = await fetch('movieslist.json').then(results=>console.log(results));
-
-  }
-
-function changeFunction(){
-    let e = document.getElementById("filters");
-    let strUser = e.options[e.selectedIndex].value;
-    let copyMovies= [...movies];
-    let sortedMovies=sortBestFirst(copyMovies, strUser);
-
-    displayMovies(sortedMovies);
-
-}
-
-function getAttributeValue(){
-    document.getElementById()
-}
-
-function displayMovies(movies){
-    let table="<table border='1' style='width: 100%'>";
-    table +="<tr><th>ID</th><th>Name</th><th>Rank</th></tr>";
-    for (let index=0; index<movies.length; index ++){
-        table +="<tr>";
-        table +="<td>" +movies[index].id + "</td>";
-        table +="<td>" +movies[index].title + "</td>";
-        table +="<td>" +movies[index].rank + "</td>";
-        table += "</tr>"
-    }
-    table += "</table>";
-    document.getElementById("movies-list").innerHTML= table;
-}
-
 function sortBestFirst(number, attr){
 
     if (! attr) return number;
-    
+ 
     if (attr =='rank' || attr =='title' || attr =='id'){
         
         return mergeSort(number, attr)
