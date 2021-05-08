@@ -1,4 +1,4 @@
-[
+let movies=[
     {
         "title": "The Shawshank Redemption",
         "rank": "1",
@@ -218,7 +218,7 @@ function changeFunction(){
     let strUser = e.options[e.selectedIndex].value;
     let copyMovies= [...movies];
     let sortedMovies=sortBestFirst(copyMovies, strUser);
-    console.log(sortedMovies);
+
     displayMovies(sortedMovies);
 
 }
@@ -242,12 +242,9 @@ function displayMovies(movies){
 }
 
 function sortBestFirst(number, attr){
-    console.log(attr)
+
     if (! attr) return number;
-    console.log(attr)
-    console.log(attr=='rank')
-    console.log(attr=='title')
-    console.log(attr=='id')
+    
     if (attr =='rank' || attr =='title' || attr =='id'){
         
         return mergeSort(number, attr)
